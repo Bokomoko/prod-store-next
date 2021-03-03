@@ -15,17 +15,11 @@ Once you have access to the environment variables you'll need, deploy the exampl
 
 ## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Clone this repository to your local machine, edit and make changes.
 
-```bash
-npx create-next-app --example with-mongodb with-mongodb-app
-# or
-yarn create next-app --example with-mongodb with-mongodb-app
-```
+Set the environment variables to point to the correct MongoDB server. I strongly recommend to use Atlas. It´s free, bug free, and one thing less to screw up your machine. But if you´re the kind that rather sucks the bee instead of pouring honey, feel free to install a server locally.
 
-## Configuration
-
-### Set up a MongoDB database
+## Set up a MongoDB database
 
 Set up a MongoDB database either locally or with [MongoDB Atlas for free](https://mongodb.com/atlas).
 
@@ -58,7 +52,40 @@ Your app should be up and running on [http://localhost:3000](http://localhost:30
 
 You will either see a message stating "You are connected to MongoDB" or "You are NOT connected to MongoDB". Ensure that you have provided the correct `MONGODB_URI` and `MONGODB_DB` environment variables.
 
-When you are successfully connected, you can refer to the [MongoDB Node.js Driver docs](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/collections/) for further instructions on how to query your database.
+When you are successfully connected, you can use this server for a very crude CRUD.
+
+## A Very crude CRUD
+
+This service has a list of endpoints:
+
+/postprod - Creates a new entry/document/row in the database.
+
+/getbyid - Retrieves an entry identified by id
+
+/putprod - Updates an existing entry identified by id
+
+/deleteprod - Deletes an existing entry identified by id
+
+/prodtlist - List all entries in no particular order
+
+All requests are obvious but prodtlist which is also a GET. <well, I guess I can change it to getlist and keep coherence>
+
+All responses are json , all requests should be json objects too.
+
+The only required field is id, a 12 or 24 bytes long string. It should be unique. 
+
+Attempts to insert (post) duplicate keys will obtain error in response.
+
+Attempts to get, delete, put non existing keys will obtain erro in response.
+
+Success will always return an object. It could be just a result or the intended entry/entries. Always in json format.
+
+You can create any field you want of almost any type supported by MongoDb.
+
+In five minutes you have a functional database with no "create tables" or whatever ...
+
+
+
 
 ## Deploy on Vercel
 
