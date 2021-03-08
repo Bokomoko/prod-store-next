@@ -2,7 +2,7 @@ import { connectToDatabase } from "../../util/mongodb";
 import { ObjectId } from 'mongodb'
 export default async (req, res) => {
   const { db } = await connectToDatabase();
-  const { id, record } = req.body
+  const { id } = req.body
 
   const aProduct = await db
     .collection("produtos")
