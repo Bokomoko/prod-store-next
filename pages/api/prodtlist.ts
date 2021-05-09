@@ -9,11 +9,11 @@ export default async (req, res) => {
   if (findWhat) {
     findString = { $text: { $search: "${findWhat}" } }
   }
-
+  console.log({ findwhat })
 
   const prodList = await db
     .collection("produtos")
-    .find()
+    .find(findString)
     .limit(100)
     .toArray();
 
