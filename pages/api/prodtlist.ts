@@ -5,9 +5,9 @@ export default async (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true)
   res.setHeader('Access-Control-Allow-Origin', '*')
   const { findWhat } = req
-  let findString = ""
+  let findString = {}
   if (findWhat) {
-    findString = `{ $text: { $search: "${findWhat}" } }`
+    findString = { $text: { $search: "${findWhat}" } }
   }
 
 
