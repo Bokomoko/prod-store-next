@@ -13,8 +13,8 @@ export default async (req, res) => {
 
   const prodList = await db
     .collection("produtos")
-    .find({ findString })
-    .limit(20)
+    .find()
+    .limit(100)
     .toArray();
 
   res.json(prodList);
