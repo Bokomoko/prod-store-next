@@ -4,12 +4,13 @@ export default async (req, res) => {
   const { db } = await connectToDatabase();
   res.setHeader('Access-Control-Allow-Credentials', true)
   res.setHeader('Access-Control-Allow-Origin', '*')
-  const { findWhat } = req
+  console.log({ req })
+  const { findWhat } = req.body
   let findString = {}
   if (findWhat) {
-    findString = { $text: { $search: "${findWhat}" } }
+    findString = { $text: { $search: `"${findWhat}"` } }
   }
-  console.log({ findwhat })
+  console.log({ findString })
 
   const prodList = await db
     .collection("produtos")
